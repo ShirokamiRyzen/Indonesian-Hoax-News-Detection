@@ -11,7 +11,7 @@ HEADERS = {
 
 INDEX_URL = "https://indeks.kompas.com/"
 PAGE_URL  = INDEX_URL + "?page={}"
-MAX_PAGES = 50
+MAX_PAGES = 200
 
 # ──────────────────────────────────────────────────────────────
 def scrape_index(pages: int = MAX_PAGES) -> List[Dict]:
