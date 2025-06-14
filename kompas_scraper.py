@@ -11,9 +11,8 @@ HEADERS = {
 
 INDEX_URL = "https://indeks.kompas.com/"
 PAGE_URL  = INDEX_URL + "?page={}"
-MAX_PAGES = 200
+MAX_PAGES = 100
 
-# ──────────────────────────────────────────────────────────────
 def scrape_index(pages: int = MAX_PAGES) -> List[Dict]:
     records: List[Dict] = []
 
@@ -60,7 +59,6 @@ def scrape_index(pages: int = MAX_PAGES) -> List[Dict]:
             })
     return records
 
-# ──────────────────────────────────────────────────────────────
 def get_excerpt(url: str) -> str:
     try:
         res = requests.get(url, headers=HEADERS, timeout=30)
@@ -71,14 +69,12 @@ def get_excerpt(url: str) -> str:
     except Exception:
         return ""
 
-# ──────────────────────────────────────────────────────────────
 def save_csv(rows: List[Dict], fname: str = "kompas.csv"):
     os.makedirs("data", exist_ok=True)
     path = os.path.join("data", fname)
     pd.DataFrame(rows).to_csv(path, index=False, encoding="utf-8-sig")
     print(f"Data tersimpan di {path} (total {len(rows)} baris)")
 
-# ──────────────────────────────────────────────────────────────
 def main():
     data = scrape_index()
     save_csv(data)

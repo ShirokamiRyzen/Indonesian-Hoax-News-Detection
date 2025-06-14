@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 base_url = "https://turnbackhoax.id/page/"
-max_pages = 200
+max_pages = 100
 data = []
 
 headers = {
